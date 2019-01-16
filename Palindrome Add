@@ -1,0 +1,47 @@
+package optimized.math;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+
+public class PalindromeAdd {
+	
+	public static void main(String[] args) throws IOException{
+		InputStreamReader reader = new InputStreamReader(System.in, StandardCharsets.UTF_8);
+		BufferedReader in = new BufferedReader(reader);
+		String line;
+		int input, tempValue = 0, counter = 0;
+		while((line = in.readLine()) != null){
+			input = Integer.parseInt(line);
+			tempValue = input + reverseNumber(input);
+			counter++;
+			while(!isPalindrome(tempValue)){
+				input = tempValue;
+				tempValue = input+reverseNumber(input);
+				counter++;
+			}
+			System.out.println(counter + " " + tempValue);
+		}
+	}
+		
+		static int reverseNumber(int num) {
+			int reverseNumber = 0;
+			while(num != 0){
+				reverseNumber = reverseNumber * 10;
+				reverseNumber = reverseNumber + num%10;
+				num = num/10;
+			}
+			return reverseNumber;
+		}
+		
+		static boolean isPalindrome(int num) {
+			if(num == reverseNumber(num)) {
+				return true;
+			} else{
+				return false;
+			}
+		}
+	
+
+}
